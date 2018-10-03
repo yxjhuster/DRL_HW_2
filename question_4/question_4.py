@@ -4,8 +4,8 @@ import scipy.stats as stats
 class defined_distribution(stats.rv_continuous):
     def _pdf(self, x):
         # return 1/2 * (1 + x)
-        # return np.exp(-(x - 3)**2/ 2.)/(np.sqrt(2.0 * np.pi))/0.0227
-        return np.exp(-x**2 / 2.) / np.sqrt(2.0 * np.pi)/0.6827
+        # return np.exp(-(x - 3)**2/ 2.)/(np.sqrt(2.0 * np.pi))
+        return np.exp(-x**2 / 2.) / np.sqrt(2.0 * np.pi)
         # return 15/16 * (x ** 2) * ((1.0 + x) ** 2)
 
 
@@ -16,18 +16,18 @@ def pdf_p(x):
 def pdf_q(x, type_num):
     if type_num == 0:
         #we should normalized the pdf 0.0227
-        return np.exp(-(x - 3) ** 2 / 2.) / (np.sqrt(2.0 * np.pi))/0.0227
+        return np.exp(-(x - 3) ** 2 / 2.) / (np.sqrt(2.0 * np.pi))
     elif type_num == 1:
         #we should normalized the pdf 0.6827
-        return np.exp(-x ** 2 / 2.) / np.sqrt(2.0 * np.pi)/0.6827
+        return np.exp(-x ** 2 / 2.) / np.sqrt(2.0 * np.pi)
     elif type_num == 2:
         return 15/16 * x ** 2 * (1.0 + x) ** 2
 
 def sample_distribution(num):
     sum = 0
     var = float(0)
-    distribution = defined_distribution(a=-1, b=1)
-    # distribution = defined_distribution()
+    # distribution = defined_distribution(a=-1, b=1)
+    distribution = defined_distribution()
     sample = distribution.rvs(size=num)
     # print(sample)
     for i in range(num):
@@ -85,6 +85,6 @@ def weighted_sample_distribution(num):
 
 
 # expectation, variance = sample_distribution(1000)
-expectation, variance = weighted_sample_distribution(1000)
+expectation, variance = weighted_sample_distribution(100)
 print("Expectation: %f" % expectation)
 print("Variance: %f" % variance)
